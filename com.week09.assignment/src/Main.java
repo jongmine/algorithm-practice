@@ -30,6 +30,5 @@ public class Main {
         ShellSort shellSort = new ShellSort();
         int[] shell = shellSort.sort(array);
         for (int i : shell) System.out.printf("%d ", i);
-
     }
 }
