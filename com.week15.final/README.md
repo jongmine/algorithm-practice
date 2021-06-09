@@ -8,17 +8,15 @@
 
 ## Simulated Annealing Algorithm
 
-## Data Web Crawling
+## Curve Fitting
 
-## Estimation of Graph for price of Gold 99.99K
+## Estimation of Graph for stock price of KAKAO(035720)
+
+> 2020.5~2021.5 종가 기준
 
 ## Results
 
-
-
 ## 참고 및 출처
-
-- [Jon Kleinberg and Eva Tardos, Algorithm design n.p.: Pearson, 2013.](https://www.pearson.com/us/higher-education/program/Kleinberg-Algorithm-Design/PGM319216.html)
 
 - [Skiena, Steven S. The Algorithm Design Manual (Texts in Computer Science) 3rd ed. 2020 Edition. n.p.: Springer, 2020.](https://www.springer.com/gp/book/9783030542559)
 
