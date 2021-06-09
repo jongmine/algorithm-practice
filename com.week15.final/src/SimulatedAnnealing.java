@@ -4,17 +4,17 @@ import java.util.Random;
 
 public class SimulatedAnnealing {
     private double temperature;
-    private final double coolingFraction;
     private final int coolingSteps;
+    private final double coolingFraction;
     private final double k;
     private final boolean findMinimum;
-    ArrayList<Double> valueHistory;
     ArrayList<Double> candidateHistory;
+    ArrayList<Double> valueHistory;
 
     public SimulatedAnnealing(double initialTemperature, double coolingFraction, int coolingSteps, boolean findMinimum) {
         this.temperature = initialTemperature;
-        this.coolingFraction = coolingFraction;
         this.coolingSteps = coolingSteps;
+        this.coolingFraction = coolingFraction;
         this.k = 0.01;  // Boltzman's constant
         this.findMinimum = findMinimum;
         this.candidateHistory = new ArrayList<>();
@@ -25,11 +25,11 @@ public class SimulatedAnnealing {
         Random random = new Random();
         double candidate = random.nextDouble() * (upper - lower) + lower;
         double candidateValue = e.calculateEq(candidate);
+        candidateHistory.add(candidate);
         valueHistory.add(candidateValue);
 
         for (int i = 0; i < coolingSteps; i++) {
-            //int StepsPerTemperature = (int) temperature * 20;  // or 1000
-            int StepsPerTemperature = 1000;
+            int StepsPerTemperature = (int) temperature * 20;
             for (int j = 0; j < StepsPerTemperature; j++) {
                 double neighbor = random.nextDouble() * (upper - lower) + lower;
                 double neighborValue = e.calculateEq(neighbor);
@@ -54,7 +54,7 @@ public class SimulatedAnnealing {
     }
 
     public boolean isNeighborBetter(double x, double y, boolean findMinimum) {
-        // x > y -> 최소값 구하기, x < y -> 최대값 구하기
+        // x > y -> 최솟값 구하기, x < y -> 최댓값 구하기
         if (findMinimum)
             return x > y;
         else
@@ -63,11 +63,14 @@ public class SimulatedAnnealing {
 
     public void getBestSolution(boolean findMinimum) {
         double x, y;
-        if (findMinimum)
+        if (findMinimum) {
+            System.out.print("최소값: ");
             y = Collections.min(this.valueHistory);
-        else
+        } else {
+            System.out.print("최대값: ");
             y = Collections.max(this.valueHistory);
-        x = this.valueHistory.indexOf(y);
+        }
+        x = this.candidateHistory.get(this.valueHistory.indexOf(y));
         System.out.println("x = " + x + ", f(x) = " + y);
     }
 }
